@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Claim Check</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="cases.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <div class="wrap identity"><span class="mark" aria-hidden="true">✓</span>
+      <span>Claim Check</span><span class="mode">AI simulation</span></div>
+  </header>
+  <main class="wrap">
+    <div class="intro">
+      <h1>Check a revision claim</h1>
+      <p>Make your own judgement, then compare it with simulated AI advice.</p>
+    </div>
+    <div class="session">
+      <label for="timing">Show practice feedback</label>
+      <select id="timing">
+        <option value="immediate">After each case</option>
+        <option value="deferred">After all cases</option>
+      </select>
+      <span class="progress" id="progress">0 of 3 complete</span>
+      <button class="quiet" id="restart" type="button" hidden>Restart practice</button>
+    </div>
+    <nav id="case-nav" aria-label="Example cases"></nav>
+    <div class="workbench">
+      <section class="card assessment" aria-labelledby="case-title">
+        <div class="case-input">
+          <p class="eyebrow" id="topic"></p>
+          <h2 id="case-title"></h2>
+          <blockquote id="claim"></blockquote>
+        </div>
+        <form id="initial-form">
+          <fieldset id="initial-fields">
+            <legend>1. Your initial judgement</legend>
+            <div id="initial-options" class="options"></div>
+          </fieldset>
+          <button class="primary" type="submit" id="reveal" disabled>Show AI advice</button>
+        </form>
+        <form id="final-form" hidden>
+          <fieldset id="final-fields">
+            <legend>3. Your final judgement</legend>
+            <div id="final-options" class="options"></div>
+          </fieldset>
+          <button class="primary" id="finish" type="submit" disabled>Check result</button>
+        </form>
+      </section>
+      <section class="card review" aria-labelledby="review-title">
+        <h2 id="review-title">2. Review the advice</h2>
+        <p id="locked">AI advice appears after you choose an initial judgement.</p>
+        <div id="advice" hidden>
+          <p class="eyebrow">Simulated recommendation</p>
+          <h3 id="verdict"></h3>
+          <p id="explanation"></p>
+          <details id="evidence">
+            <summary>Inspect cited evidence <span id="source-ref"></span></summary>
+            <div id="source-card"></div>
+          </details>
+          <button class="quiet" id="to-final" type="button">Go to final judgement</button>
+        </div>
+        <p class="pending" id="pending" hidden>Decision saved. Feedback will appear after all three cases are complete.</p>
+        <section id="result" class="result" aria-labelledby="result-title" hidden>
+          <p class="eyebrow">Practice feedback</p>
+          <h3 id="result-title"></h3>
+          <p id="feedback"></p>
+          <p id="comparison"></p>
+        </section>
+      </section>
+    </div>
+    <p id="announce" class="sr" role="status"></p>
+  </main>
+</body>
+</html>
